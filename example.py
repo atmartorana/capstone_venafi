@@ -1,5 +1,7 @@
+#!/usr/bin/python3
+
 def getContext():
-    context = input("What is the context: ")
+    context = input("What is the context (Option: authorization): ")
     return context        
 
 

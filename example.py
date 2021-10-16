@@ -37,14 +37,14 @@ def getPaths():
             line2 = '   glob.match("/%s/*", [], http_request.path)\n' %(path)
             line3 = "}\n"
             out.writelines([line1, line2, line3])
-    print("[** Created example.rego file in current directory **]")
+    print("[** Created example.rego")
 
-def passPolicyToCloud():
-    path = input("Where is private key for ssh access located?: ")
-    user = input("User corresponding to ssh key?: ")
-    externalIp = input("External ip of container?: ")
-    subprocess.Popen(("scp -i %s example.rego %s@%s:.") %(path, user, externalIp), shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()
-    print("[** Pushed example.rego file to home directory in cloud instance **]")
+def passPolicyEnvoy():
+    old = "example.rego"
+    new = "/home/venafi_cmu/Spire-kubernetes/k8s/envoy-opa/k8s/backend/config/opa-policy-test.rego"
+    subprocess.run("mv %s %s" %(old, new), shell=True)
+    # subprocess.run(("scp -i %s example.rego %s@%s:.") %(path, user, externalIp), shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()
+    print("[** Pushed example.rego file to envoy proxy and renamed opa-policy-test.rego**]")
 
     
 
@@ -53,4 +53,4 @@ if __name__ == "__main__":
         getId()
         getCertInfo()
         getPaths()
-        passPolicyToCloud()
+        passPolicyEnvoy()

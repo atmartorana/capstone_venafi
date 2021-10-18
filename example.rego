@@ -4,8 +4,8 @@ import input.attributes.request.http as http_request
 default allow = false
 allow {
    valid_path
-   http_request.method == "New Method"
-   svc_spiffe_id == "NEW ID"
+   http_request.method == "asdf"
+   svc_spiffe_id == "asdfsad"
 }
 
 svc_spiffe_id = spiffe_id {
@@ -14,11 +14,14 @@ svc_spiffe_id = spiffe_id {
 }
 
 valid_path {
-   glob.match("/new/*", [], http_request.path)
+   glob.match("/sf/*", [], http_request.path)
 }
 valid_path {
-   glob.match("/list/*", [], http_request.path)
+   glob.match("/fds/*", [], http_request.path)
 }
 valid_path {
-   glob.match("/aa/*", [], http_request.path)
+   glob.match("/asd/*", [], http_request.path)
+}
+valid_path {
+   glob.match("/f/*", [], http_request.path)
 }
